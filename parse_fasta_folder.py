@@ -28,3 +28,4 @@ def parse_fasta_files(folder_path):
                 print(f"Error reading {filename}: {e}")
     return fasta_dict
 
+print (parse_fasta_files("./Data/DMPK").keys())
