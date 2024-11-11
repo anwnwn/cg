@@ -7,6 +7,7 @@
 import sys
 import collections
 from collections import defaultdict
+from parse_fasta_folder import parse_fasta_files
 
 if len(sys.argv) != 4:
     print("Usage: python3 kmer-index.py <input_file> <k_value> <output_file>")

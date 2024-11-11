@@ -3,11 +3,12 @@
 # folder path = 'xyz'
 # fasta_dict = parse_fasta_files(folder_path)
 
+
+# Notebook code used: https://nbviewer.org/github/BenLangmead/comp-genomics-class/blob/master/notebooks/FASTQ.ipynb
 import os
 
 def parse_fasta_files(folder_path):
     fasta_dict = {}
-    
     # Go thru all the files in the path
     for filename in os.listdir(folder_path):
         # Checks if it is a fasta file
