@@ -17,7 +17,7 @@ execution_time_plot = [t if t is not None else 0 for t in execution_time]
 
 bar_width = 0.6
 
-plt.figure(figsize=(14, 7))
+plt.figure(figsize=(16, 7))
 plt.bar(structures, memory_usage_plot, color='skyblue', width=bar_width)
 plt.ylabel("Memory Usage (MB)")
 plt.xlabel("Graph Type")
