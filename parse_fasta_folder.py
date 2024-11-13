@@ -20,12 +20,13 @@ def parse_fasta_files(folder_path):
                         line = line.strip()
                         if not line.startswith('>'):
                             for c in line:
-                                if c in ('ACGT'):
-                                    sequence += c
+                                sequence += c
+                                # if c in ('ACGT'):
+                                #     sequence += c
                 # filename as key and sequence as value in dictionary
                 fasta_dict[filename] = sequence
             except Exception as e:
                 print(f"Error reading {filename}: {e}")
     return fasta_dict
 
-print (parse_fasta_files("./Data/DMPK").keys())
+# print (parse_fasta_files("./Data/DMPK").keys())
