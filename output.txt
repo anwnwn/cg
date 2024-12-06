@@ -1,0 +1,5 @@
+K-mer: raw, Found: True, Time: 0.0000009537 seconds
+K-mer: row, Found: True, Time: 0.0000004768 seconds
+K-mer: yor, Found: False, Time: 0.0000004768 seconds
+K-mer: row_your, Found: False, Time: 0.0000002384 seconds
+K-mer: row_yiur, Found: False, Time: 0.0000004768 seconds

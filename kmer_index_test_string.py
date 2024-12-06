@@ -34,19 +34,20 @@ def main():
         sys.exit(1)
 
     folder_path = sys.argv[1]
-    k_value = 31  # Value from paper
+    k_value = 3  # Value from paper
     output_file = sys.argv[2]
     kmer_file = sys.argv[3]
 
     fasta_sequences = parse_fasta_files(folder_path)
+    print (fasta_sequences)
     kmer_index = build_kmer_index(fasta_sequences, k_value)
     kmers = read_kmers_from_file(kmer_file)
 
     with open(output_file, 'w') as out_fh:
         for kmer in kmers:
             found, query_time = time_find_kmer(kmer_index, kmer)
-            out_fh.write(f"K-mer: {kmer}, Found: {found}, Time: {query_time:.6f} seconds\n")
-            print(f"K-mer: {kmer}, Found: {found}, Time: {query_time:.6f} seconds")
+            out_fh.write(f"K-mer: {kmer}, Found: {found}, Time: {query_time:.10f} seconds\n")
+            print(f"K-mer: {kmer}, Found: {found}, Time: {query_time:.10f} seconds")
 
 if __name__ == "__main__":
     main()
