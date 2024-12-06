@@ -1,0 +1,21 @@
+strict digraph  {
+	our_boat ->your_boat [ label = t ];
+	your_boat ->_your_boa [ label = t ];
+	_your_boa ->w_your_bo [ label = a ];
+	w_your_bo ->ow_your_b [ label = o ];
+	ow_your_b ->row_your_ [ label = b ];
+	row_your_ ->_row_your [ label = _ ];
+	_row_your ->w_row_you [ label = r ];
+	w_row_you ->ow_row_yo [ label = u ];
+	w_row_you ->aw_row_yo [ label = u ];
+	ow_row_yo ->row_row_y [ label = o ];
+	aw_row_yo ->raw_row_y [ label = o ];
+	row_row_y ->_row_row_ [ label = y ];
+	raw_row_y ->_raw_row_ [ label = y ];
+	_row_row_ ->w_row_row [ label = _ ];
+	_raw_row_ ->w_raw_row [ label = _ ];
+	w_row_row ->ow_row_ro [ label = w ];
+	w_raw_row ->ow_raw_ro [ label = w ];
+	ow_row_ro ->row_row_r [ label = o ];
+	ow_raw_ro ->row_raw_r [ label = o ];
+}

@@ -1,0 +1,86 @@
+// DeBruijn graph
+digraph {
+	row_ [label=row_]
+	ow_r [label=ow_r]
+	w_ro [label=w_ro]
+	_row [label=_row]
+	ow_y [label=ow_y]
+	w_yo [label=w_yo]
+	_you [label=_you]
+	your [label=your]
+	our_ [label=our_]
+	ur_b [label=ur_b]
+	r_bo [label=r_bo]
+	_boa [label=_boa]
+	boat [label=boat]
+	"oat$" [label="oat$"]
+	"at$r" [label="at$r"]
+	"t$ro" [label="t$ro"]
+	"$row" [label="$row"]
+	w_ra [label=w_ra]
+	_raw [label=_raw]
+	raw_ [label=raw_]
+	aw_r [label=aw_r]
+	row_ -> ow_r
+	row_ -> ow_r
+	row_ -> ow_y
+	row_ -> ow_r
+	row_ -> ow_y
+	row_ -> ow_r
+	row_ -> ow_r
+	row_ -> ow_y
+	ow_r -> w_ro
+	ow_r -> w_ro
+	ow_r -> w_ra
+	ow_r -> w_ro
+	ow_r -> w_ro
+	w_ro -> _row
+	w_ro -> _row
+	w_ro -> _row
+	w_ro -> _row
+	w_ro -> _row
+	_row -> row_
+	_row -> row_
+	_row -> row_
+	_row -> row_
+	_row -> row_
+	ow_y -> w_yo
+	ow_y -> w_yo
+	ow_y -> w_yo
+	w_yo -> _you
+	w_yo -> _you
+	w_yo -> _you
+	_you -> your
+	_you -> your
+	_you -> your
+	your -> our_
+	your -> our_
+	your -> our_
+	our_ -> ur_b
+	our_ -> ur_b
+	our_ -> ur_b
+	ur_b -> r_bo
+	ur_b -> r_bo
+	ur_b -> r_bo
+	r_bo -> _boa
+	r_bo -> _boa
+	r_bo -> _boa
+	_boa -> boat
+	_boa -> boat
+	_boa -> boat
+	boat -> "oat$"
+	boat -> "oat$"
+	boat -> "oat$"
+	"oat$" -> "at$r"
+	"oat$" -> "at$r"
+	"at$r" -> "t$ro"
+	"at$r" -> "t$ro"
+	"t$ro" -> "$row"
+	"t$ro" -> "$row"
+	"$row" -> row_
+	"$row" -> row_
+	w_ra -> _raw
+	_raw -> raw_
+	raw_ -> aw_r
+	aw_r -> w_ro
+}
