@@ -4,3 +4,6 @@
 [submodule "recognizer"]
 	path = recognizer
 	url = https://github.com/Kuanhao-Chao/Wheeler_Graph_Toolkit.git
+[submodule "WheeliePackage"]
+	path = WheeliePackage
+	url = https://github.com/Kuanhao-Chao/Wheeler_Graph_Toolkit.git

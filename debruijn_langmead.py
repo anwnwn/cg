@@ -141,7 +141,7 @@ class DeBruijnGraph2(DeBruijnGraph):
                     g.edge(src.km1mer, dst.km1mer, label=str(v))
             else:
                 for dst in dsts:
-                    g.edge(src.km1mer, dst.km1mer)
+                    g.edge(src.km1mer, dst.km1mer, label =str(dst.km1mer[-1]))
         return g
     
 # dot = DeBruijnGraph2(['to_every_thing_turn_turn_turn_there_is_a_season_turn_turn_turn'], 4).to_dot()
@@ -152,7 +152,8 @@ class DeBruijnGraph2(DeBruijnGraph):
 from parse_fasta_folder import parse_fasta_files 
 
 # Get Input Fasta Files for pangenome (PG)
-fasta_dict = parse_fasta_files("./Data/toy_dataset")
+# fasta_dict = parse_fasta_files("./Data/toy_dataset")
+fasta_dict= parse_fasta_files("./Data/DMPK")
 
 fasta_names = list(fasta_dict.keys())
 read = ""
@@ -160,6 +161,24 @@ read = ""
 for i, key in enumerate(fasta_names):
     read = read + fasta_dict[key] + "$"
 
-dot = DeBruijnGraph2([read], 5).to_dot()
-print (dot.source)
-dot.render(directory='doctest-output', view=True) 
+dot = DeBruijnGraph2([read], 31).to_dot()
+
+
+outfile = "DMPK.dot"
+
+fw = open(outfile, "w")
+
+
+lines_to_output = (dot.source).splitlines()
+for i,line in enumerate(lines_to_output): 
+    if i == 0 or i == len(lines_to_output): 
+        fw.write(line + "\n")
+    else: 
+        fw.write(line + ";\n")
+
+
+fw.close()
+
+
+
+# dot.render(directory='doctest-output', view=True) 
