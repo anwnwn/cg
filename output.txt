@@ -1,1 +1,9 @@
-K-mer: row, Found: False, Time: 0.000001 seconds
+Suffix tree built in 1.097669 seconds.
+Memory usage: 37706.49 KB; Peak: 37706.74 KB.
+Substring: GCTCCCTCTCCTAGGACCCTCCCCCCAAAAG, Found: True, Time: 0.0000259876 seconds
+Substring: CCTAGGACCCCCACCCCCGACCCTCGCGAAA, Found: False, Time: 0.0000169277 seconds
+Substring: , Found: True, Time: 0.0000014305 seconds
+Substring: , Found: True, Time: 0.0000004768 seconds
+Substring: , Found: True, Time: 0.0000004768 seconds
+Substring: , Found: True, Time: 0.0000002384 seconds
+Substring: , Found: True, Time: 0.0000007153 seconds

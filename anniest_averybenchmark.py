@@ -1,6 +1,8 @@
 import os
 import time
+import tracemalloc  # For memory profiling
 
+# Parse FASTA files
 def parse_fasta_files(folder_path):
     fasta_dict = {}
     for filename in os.listdir(folder_path):
@@ -13,19 +15,20 @@ def parse_fasta_files(folder_path):
                         line = line.strip()
                         if not line.startswith('>'):
                             for c in line:
-                                if c in ('ACGT'):
                                     sequence += c
                 fasta_dict[filename] = sequence
             except Exception as e:
                 print(f"Error reading {filename}: {e}")
     return fasta_dict
 
+# Suffix Tree Node
 class Node:
     def __init__(self):
         self.children = {}
         self.indexes = []
         self.is_leaf = False
 
+# Build Suffix Tree
 def build_suffix_tree(fasta_dict):
     root = Node()
     for seq_id, sequence in fasta_dict.items():
@@ -74,6 +77,7 @@ def build_suffix_tree(fasta_dict):
                 current_node.indexes.append((seq_id, i))
     return root
 
+# Search Substring
 def find(node, substring):
     current_node = node
     idx = 0
@@ -100,21 +104,38 @@ def find(node, substring):
             return False
     return True
 
+# Main Function
 def main():
-    folder_path = 'Data/DMPK'
-    substring = 'TGAACAAGTGGGACATGCTGAAGAGGGGCGAG'
+    folder_path = 'DMPK'
+    input_file = 'benchmarking_files/DMPK_input.txt'
+    output_file = 'output.txt'
+
     fasta_dict = parse_fasta_files(folder_path)
-    tree = build_suffix_tree(fasta_dict)
 
+    # Memory profiling for building the suffix tree
+    tracemalloc.start()
+    start_mem = tracemalloc.get_traced_memory()
     start_time = time.time()
-    found = find(tree, substring)
+    tree = build_suffix_tree(fasta_dict)
     end_time = time.time()
+    end_mem = tracemalloc.get_traced_memory()
+    tracemalloc.stop()
 
-    if found:
-        print(f"The substring '{substring}' exists in the pangenome.")
-    else:
-        print(f"The substring '{substring}' does not exist in the pangenome.")
-    print(f"Search time: {end_time - start_time:.6f} seconds")
+    print(f"Suffix tree built in {end_time - start_time:.6f} seconds")
+    print(f"Memory used: {end_mem[0] - start_mem[0]} bytes, Peak memory: {end_mem[1]} bytes")
+
+    # Read substrings from input file
+    with open(input_file, 'r') as file:
+        substrings = [line.strip() for line in file.readlines()]
+
+    # Search substrings and write results to output file
+    with open(output_file, 'w') as out_fh:
+        for substring in substrings:
+            start_time = time.time()
+            found = find(tree, substring)
+            end_time = time.time()
+            out_fh.write(f"Substring: {substring}, Found: {found}, Time: {end_time - start_time:.10f} seconds\n")
+            print(f"Substring: {substring}, Found: {found}, Time: {end_time - start_time:.10f} seconds")
 
 if __name__ == "__main__":
     main()
