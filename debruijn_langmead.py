@@ -152,8 +152,8 @@ class DeBruijnGraph2(DeBruijnGraph):
 from parse_fasta_folder import parse_fasta_files 
 
 # Get Input Fasta Files for pangenome (PG)
-# fasta_dict = parse_fasta_files("./Data/toy_dataset")
-fasta_dict= parse_fasta_files("./Data/DMPK")
+fasta_dict = parse_fasta_files("./Data/toy_dataset")
+# fasta_dict= parse_fasta_files("./Data/DMPK")
 
 fasta_names = list(fasta_dict.keys())
 read = ""
@@ -161,10 +161,10 @@ read = ""
 for i, key in enumerate(fasta_names):
     read = read + fasta_dict[key] + "$"
 
-dot = DeBruijnGraph2([read], 31).to_dot()
+dot = DeBruijnGraph2([read], 5).to_dot()
 
 
-outfile = "DMPK.dot"
+outfile = "rowboat.dot"
 
 fw = open(outfile, "w")
 
