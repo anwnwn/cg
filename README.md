@@ -9,5 +9,5 @@ Reference bias leads to misalignment or exclusion of reads and incomplete identi
 #### Reproducibility
 Each indexing representation (K-mer_Index, SuffixTree, DeBruijn_Graph) can be accessed through its respective folder along with instructions to run the code. The Wheeler graph representation is generated through the Debruijn implementation and then fed through the Wheelie algorithm.
 
-#### Contact
-Andrea Cheng, Nikhil Choudhary, Avery Kuo, Annie Wang
+#### Ref
+Andrea Cheng, Nikhil Choudhary, Avery Kuo, Annie Wang supervised by Dr. Ben Langmead
