@@ -138,10 +138,10 @@ class DeBruijnGraph2(DeBruijnGraph):
                     for dst in dsts:
                         weightmap[dst] = weightmap.get(dst, 0) + 1
                 for dst, v in weightmap.items():
-                    g.edge(src.km1mer, dst.km1mer, label=str(v))
+                    g.edge(dst.km1mer, src.km1mer, label=str(v))
             else:
                 for dst in dsts:
-                    g.edge(src.km1mer, dst.km1mer, label =str(dst.km1mer[-1]))
+                    g.edge(dst.km1mer, src.km1mer, label =str(dst.km1mer[-1]))
         return g
     
 # dot = DeBruijnGraph2(['to_every_thing_turn_turn_turn_there_is_a_season_turn_turn_turn'], 4).to_dot()
@@ -164,6 +164,7 @@ for i, key in enumerate(fasta_names):
 dot = DeBruijnGraph2([read], 5).to_dot()
 
 
+
 outfile = "rowboat.dot"
 
 fw = open(outfile, "w")
@@ -171,7 +172,9 @@ fw = open(outfile, "w")
 
 lines_to_output = (dot.source).splitlines()
 for i,line in enumerate(lines_to_output): 
-    if i == 0 or i == len(lines_to_output): 
+    if i == 0: 
+        continue
+    if i == 1 or i == len(lines_to_output) - 1: 
         fw.write(line + "\n")
     else: 
         fw.write(line + ";\n")
