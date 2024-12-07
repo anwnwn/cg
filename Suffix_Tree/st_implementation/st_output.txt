@@ -1,0 +1,4 @@
+Suffix tree built in 243.233919 seconds
+Memory used: 238337532 bytes, Peak memory: 238340773 bytes
+Substring: GCTCCCTCTCCTAGGACCCTCCCCCCAAAAG, Found: True, Time: 0.0000000000 seconds
+Substring: CCTAGGACCCCCACCCCCGACCCTCGCGAAA, Found: False, Time: 0.0000000000 seconds

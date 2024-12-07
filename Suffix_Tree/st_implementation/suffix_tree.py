@@ -3,6 +3,8 @@ import time
 import tracemalloc
 import sys
 from parse_fasta_folder import parse_fasta_files 
+import matplotlib.pyplot as plt
+import pandas as pd
 
 # Suffix Tree Node
 class Node:
@@ -109,11 +111,36 @@ def main():
     end_mem = tracemalloc.get_traced_memory()
     tracemalloc.stop()
 
-    # Read substrings from input file
-    with open(input_file, 'r') as file:
-        substrings = [line.strip() for line in file.readlines()]
+    strings = []
+    lengths = [31, 62, 124, 248, 596]
+    with open("Data/DMPK/dmpk_NM_001424164.fasta", "r") as file:
+        # Skip the header line
+        header = file.readline()
+        
+        # Read the remaining lines and concatenate them into a single sequence string
+        sequence = "".join(line.strip() for line in file)
+
+    # Extract substrings of specified lengths
+    for i in lengths:
+        if i <= len(sequence):  # Ensure the length is valid
+            substring = sequence[:i]  # Get the substring of length i
+            strings.append(substring)
+        else:
+            print(f"Length {i} exceeds the sequence length of {len(sequence)}.")
+
+    # print(strings)
+
+
+    substrings = strings
+
+
+
+    # # Read substrings from input file
+    # with open(input_file, 'r') as file:
+    #     substrings = [line.strip() for line in file.readlines()]
 
     # Search substrings, write results to output file
+    results = []
     with open(output_file, 'w') as out_fh:
         out_fh.write(f"Suffix tree built in {end_time - start_time:.6f} seconds\n")
         out_fh.write(f"Memory used: {end_mem[0] - start_mem[0]} bytes, Peak memory: {end_mem[1]} bytes\n")
@@ -122,6 +149,23 @@ def main():
             found = find(tree, substring)
             end_time = time.time()
             out_fh.write(f"Substring: {substring}, Found: {found}, Time: {end_time - start_time:.10f} seconds\n")
+            print(f"Substring: {substring}, Found: {found}, Time: {end_time - start_time:.10f} seconds\n")
+            results.append((substring, found, end_time - start_time))
+            print( end_time - start_time)
+
+    
+    lengths = [len(substring) for substring, _, _ in results]
+    times = [time for _, _, time in results]
+    plt.figure(figsize=(10, 6))
+    plt.plot(lengths, times, marker='o', linestyle='-', label='Search Time')
+    plt.xlabel('length of substring')
+    plt.ylabel('query time')
+    plt.grid(True)
+    plt.legend()
+    plt.show()
+    print(results)
+
+
 
 if __name__ == "__main__":
     main()
