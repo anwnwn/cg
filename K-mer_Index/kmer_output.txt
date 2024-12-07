@@ -1,0 +1,4 @@
+Time taken to build kmer index: 0.1680183411 seconds
+Memory usage for building kmer index: 8497160 bytes (current), 8566534 bytes (peak)Time taken to build kmer index: 0.1680183411 seconds
+K-mer: GCTCCCTCTCCTAGGACCCTCCCCCCAAAAG, Found: True, Time: 0.0000014305 seconds
+K-mer: CCTAGGACCCCCACCCCCGACCCTCGCGAAA, Found: False, Time: 0.0000007153 seconds

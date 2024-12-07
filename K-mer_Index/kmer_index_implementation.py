@@ -41,9 +41,9 @@ def main():
     folder_path = sys.argv[1]
     # 3 for toy dataset, 31 for kmers
     k_value = 31  
-    output_file = sys.argv[2]
-    output_file = os.path.join(os.getcwd(), os.path.basename(output_file)) #ensuring that it is in the directory of kmer index
-    kmer_file = sys.argv[3]
+    kmer_file = sys.argv[2]
+    script_dir = os.path.dirname(os.path.abspath(__file__))  # Directory of this script
+    output_file = os.path.join(script_dir, os.path.basename(sys.argv[3]))  # Output file in script directory
 
     # Memory tracing
     tracemalloc.start()
