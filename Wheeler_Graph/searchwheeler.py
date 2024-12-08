@@ -1,4 +1,3 @@
-
 class WheelerGraphIndex:
     def __init__(self, L, I, O):
         self.L = L
@@ -137,9 +136,11 @@ class WheelerGraphIndex:
             if i > 0:
                 if O_stop == -1:
                     O_stop = O_start
-                # For Debugging: print(P[i:len(P) - 1] + " found")
+                # For Debugging: 
+                print(P[i:len(P) - 1] + " found")
                 indices = self.l_rank_c(O_start, O_stop, P[i-1])
-                # For Debugging: print(f"{P[i-1]} indices: {indices}")
+                # For Debugging: 
+                print(f"{P[i-1]} indices: {indices}")
                 
                 # If the next character is not found in L in the range, the pattern is not found
                 if len(indices) == 0: 
@@ -174,27 +175,36 @@ def load_bitvector(filename):
     return bit_str
 
 
-foldername = "out__DMPK"
 
-L_file = f"./{foldername}/L.txt"       # contains the edge labels in order
-I_file = f"./{foldername}/I.txt"       # bitvector of incoming edges
-O_file = f"./{foldername}/O.txt"       # bitvector of outgoing edges
+def search_wheeler(foldername, P):
+    
+    L_file = f"{foldername}/L.txt"       # contains the edge labels in order
+    I_file = f"{foldername}/I.txt"       # bitvector of incoming edges
+    O_file = f"{foldername}/O.txt"       # bitvector of outgoing edges
 
-# Load data
-L_str = load_L(L_file)
-I_str = load_bitvector(I_file)
-O_str = load_bitvector(O_file)
+    # Load data
+    L_str = load_L(L_file)
+    I_str = load_bitvector(I_file)
+    O_str = load_bitvector(O_file)
 
-# P = "GCTCCCTCTCCTAGGACCCTCCCCCCAAAAG" # Should return True
-P = "CCTAGGACCCCCACCCCCGACCCTCGCGAAA" # Should return False
-search_input = P[::-1] # reverse search string
+    
+    search_input = P[::-1] # reverse search string
 
-wgi = WheelerGraphIndex(L_str, I_str, O_str)
+    wgi = WheelerGraphIndex(L_str, I_str, O_str)
 
-found = wgi.backward_search(search_input)
+    found = wgi.backward_search(search_input)
 
 
-if found:
-        print(f"TRUE: '{P}' found in Wheeler Graph.")
-else:
-    print(f"FALSE: No occurences of '{P}' were found in Wheeler Graph")
+    # if found:
+    #         print(f"TRUE: '{P}' found in Wheeler Graph.")
+    # else:
+    #     print(f"FALSE: No occurences of '{P}' were found in Wheeler Graph")
+
+    return found
+
+
+if __name__ == "__main__":
+    foldername = "out__graphDMPKfinal"
+    P = "GCTCCCTCTCCTAGGACCCTCCCCCCAAAAG" # Should return True
+    # P = "CCTAGGACCCCCACCCCCGACCCTCGCGAAA" # Should return False
+    print(search_wheeler(foldername, P))
