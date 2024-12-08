@@ -73,38 +73,43 @@ class DeBruijnGraph2(DeBruijnGraph):
         return g
     
 
+def build_debruijn(fasta_dict, k_value): 
+
+  
+
+    # Concatenate pangenome reads, adding $ between each read
+    fasta_names = list(fasta_dict.keys())
+    read = ""
+    for i, key in enumerate(fasta_names):
+        read = read + fasta_dict[key] + "$"
 
 
-# Get Input Fasta Files for pangenome (PG)
-# fasta_dict = parse_fasta_files("./Data/toy_dataset")
-fasta_dict= parse_fasta_files("./Data/DMPK")
+    # Create Debruijn Graph in .Dot format
+    dot = DeBruijnGraph2([read], k_value).to_dot()
 
-# Concatenate pangenome reads, adding $ between each read
-fasta_names = list(fasta_dict.keys())
-read = ""
-for i, key in enumerate(fasta_names):
-    read = read + fasta_dict[key] + "$"
+    # Write .Dot file to output file
+    dotname = "graphDMPKfinal.dot"
+    outfile = "./Wheeler_Graph/" + dotname
 
+    fw = open(outfile, "w")
 
-# Create Debruijn Graph in .Dot format
-k = 31
-dot = DeBruijnGraph2([read], k).to_dot()
+    # Format to format accepted by Graphviz to render files and Wheelie Package
+    lines_to_output = (dot.source).splitlines()
+    for i,line in enumerate(lines_to_output): 
+        if i == 0: 
+            continue
+        if i == 1 or i == len(lines_to_output) - 1: 
+            fw.write(line + "\n")
+        else: 
+            fw.write(line + ";\n")
+    fw.close()
 
-
-# Write .Dot file to output file
-outfile = "graphDMPKfinal.dot"
-
-fw = open(outfile, "w")
-
-# Format to format accepted by Graphviz to render files and Wheelie Package
-lines_to_output = (dot.source).splitlines()
-for i,line in enumerate(lines_to_output): 
-    if i == 0: 
-        continue
-    if i == 1 or i == len(lines_to_output) - 1: 
-        fw.write(line + "\n")
-    else: 
-        fw.write(line + ";\n")
-fw.close()
+    return dotname
 
 
+
+if __name__ == "__main__":
+    # Get Input Fasta Files for pangenome (PG)
+    # fasta_dict = parse_fasta_files("./Data/toy_dataset")
+    fasta_dict= parse_fasta_files("./Data/DMPK")
+    build_debruijn(fasta_dict, 31)
