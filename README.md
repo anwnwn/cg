@@ -14,3 +14,10 @@ Each indexing representation (K-mer_Index, SuffixTree, DeBruijn_Graph) can be ac
 
 #### Ref
 Andrea Cheng, Nikhil Choudhary, Avery Kuo, Annie Wang supervised by Dr. Ben Langmead
+
+### Individual Contributions
+
+Nikhil:
+Annie:
+Avery:
+Andrea:
