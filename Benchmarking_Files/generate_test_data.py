@@ -4,8 +4,8 @@ import sys
 def extract_and_modify_substrings(input_file, output_file):
 
     # Can change the substring lengths you want to see as data
-    substring_lengths = [31, 63, 127, 255, 511, 1024, 2047, 4095, 8191, 10000]
-    start_index = 12  
+    substring_lengths = [31, 63, 127, 255, 511, 1024]
+    start_index = 295  
 
     # Read the FASTA file
     try:
