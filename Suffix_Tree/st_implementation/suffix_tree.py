@@ -112,21 +112,17 @@ def main():
     tracemalloc.stop()
 
     strings = []
-    lengths = [31, 62, 124, 248, 596]
+    lengths = [31, 63, 127, 255, 511]
     with open("Data/DMPK/dmpk_NM_001424164.fasta", "r") as file:
-        # Skip the header line
         header = file.readline()
-        
-        # Read the remaining lines and concatenate them into a single sequence string
         sequence = "".join(line.strip() for line in file)
 
-    # Extract substrings of specified lengths
     for i in lengths:
         if i <= len(sequence):  # Ensure the length is valid
-            substring = sequence[:i]  # Get the substring of length i
+            substring = sequence[:i]
             strings.append(substring)
         else:
-            print(f"Length {i} exceeds the sequence length of {len(sequence)}.")
+            print(f"{i} exceeds the sequence length of {len(sequence)}")
 
     # print(strings)
 
@@ -157,7 +153,7 @@ def main():
     lengths = [len(substring) for substring, _, _ in results]
     times = [time for _, _, time in results]
     plt.figure(figsize=(10, 6))
-    plt.plot(lengths, times, marker='o', linestyle='-', label='Search Time')
+    plt.plot(lengths, times, marker='o', linestyle='-', label='in 1e-5 seconds')
     plt.xlabel('length of substring')
     plt.ylabel('query time')
     plt.grid(True)
