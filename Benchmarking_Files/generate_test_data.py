@@ -26,20 +26,13 @@ def extract_and_modify_substrings(input_file, output_file):
     for length in substring_lengths:
         if len(sequence) >= length:
             original_substring = sequence[:length]
-            print(original_substring)
-            modified_substring = original_substring[:-1] + 'X'
-            print(modified_substring)
             substrings.append(original_substring)
-            substrings.append(modified_substring)
-        else:
-            print(f"Warning: Sequence is too short to extract a substring of length {length}.")
+       
 
     # Write the substrings to the output file
-    print(len(substrings))
     try:
         with open(output_file, 'w') as file:
             for substring in substrings:
-                print("hey")
                 file.write(substring + '\n')
     except Exception as e:
         print(f"Error writing to output file: {e}")
