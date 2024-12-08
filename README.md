@@ -16,17 +16,17 @@ Each indexing representation (K-mer_Index, SuffixTree, DeBruijn_Graph) can be ac
 
 #### Reproducibility
 To generate benchmarking data: Navigate to the Benchmarking_Files directory: In our case, we ran: python3 generate_test_data.py ../Data/DMPK/dmpk_NC_000019.fasta output.txt
-
-- Generalized:
-- ''' python3 generate_test_data.py'''
+  '''
+  python3 generate_test_data.py
+  '''
 
 To generate
 
 ### Acknowledgements & individual contributions
-Nikhil:
-Annie:
-Avery:
-Andrea:
+- Nikhil:
+- Annie:
+- Avery:
+-Andrea:
 
 ---
 2024 Andrea Cheng, Nikhil Choudhary, Avery Kuo, Annie Wang supervised by Dr. Ben Langmead
