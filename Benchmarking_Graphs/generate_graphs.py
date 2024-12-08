@@ -24,14 +24,17 @@ def parse_file(file_path):
 
 # Define the files to be processed and their corresponding labels
 file_paths = [
-    'K-mer_Index/kmer_output.txt', 
-    'Suffix_Tree/st_implementation/st_output.txt',  
-    'Suffix_Tree/st_package_implementation/st_output.txt', 
+    '../K-mer_Index/kmer_output.txt', 
+    '../Suffix_Tree/st_implementation/st_output.txt',  
+    '../Suffix_Tree/st_package_implementation/st_output.txt', 
+    '../Wheeler_Graph/wheeler_output.txt'
+
 ]
 labels = [
     'K-mer Index',  # Custom label for the first file
     'Custom Suffix Tree',  # Custom label for the second file
     'Package Suffix Tree',  # Custom label for the third file
+    'Wheeler Graph',  # Custom label for the fourth file
 ]
 
 # Plotting setup: Create two subplots (one for log scale and one for non-log scale)
@@ -40,6 +43,7 @@ fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 12))
 # Loop over each file and plot its data on both axes
 for file_path, label in zip(file_paths, labels):
     lengths, times = parse_file(file_path)
+    print(file_path)
     
     # Plot on log scale (base 2) for the first axis (ax1)
     ax1.plot(lengths, times, marker='o', linestyle='-', label=label)
