@@ -20,7 +20,6 @@ def read_substrings_from_file(input_file):
 # Main function
 def main():
     if len(sys.argv) != 4:
-        print("Usage: python3 -m <suffix_tree.py> <fasta_folder_path> <input_file> <output_file>")
         sys.exit(1)
 
     # Parse command-line arguments

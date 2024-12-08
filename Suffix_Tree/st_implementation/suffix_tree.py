@@ -90,7 +90,6 @@ def find(node, substring):
 # Main Function
 def main():
     if len(sys.argv) != 4:
-        print("Usage: python3 suffix_tree.py <fasta_folder_path> <kmer_input_testing_file> <output_file>")
         sys.exit(1)
 
     folder_path = sys.argv[1]
@@ -122,6 +121,6 @@ def main():
             found = find(tree, substring)
             end_time = time.time()
             out_fh.write(f"{len(substring)}: {end_time - start_time:.10f}\n")
-            
+
 if __name__ == "__main__":
     main()
