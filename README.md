@@ -53,25 +53,21 @@ Line 3+ - Length of read: query time(seconds)
 ```
 
 #### Wheeler graph
-
-The Wheeler graph representation is generated through the Debruijn implementation and then fed through the Wheelie algorithm.
-
-To generate DeBruijn graph
+- DMPK, write results to kmer_output.txt:
 ```
-python3 -m Wheeler_Graph.debruijn Visualize DeBruijn Graph PNG (if Graphviz is downloaded): dot -Tpng [name of .dot file here] > [name of outputfile].png
+python3 -m Wheeler_Graph.wheeler Data/DMPK Benchmarking_Files/output.txt wheeler_output.txt
 ```
-
-To create Wheeler Graph
-- Navigate to Wheelie Package Repository (Wheeler_Graph_Toolkit)
-- Move .dot file to ./bin (or adjust the command below)
-  ```
-  % ./bin/recognizer ./bin/[name of .dot file here] -w
-  ```
-- Move the folder produced “out__[name of .dotfile]” to location of searchwheeler.py
-
-To query Wheeler Graph
+- generalized
 ```
-python3 searchwheeler.py Change foldername to “out__[name of .dotfile]” Change P
+python3 -m <script file>
+```
+The format of the output file will be:
+```
+Line 1 - Time taken to build the k-mer index(seconds)
+
+Line 2 - Peak memory usage (in bytes)
+
+Line 3+ - Length of read: query time(seconds)
 ```
 
 #### Reproducibility
