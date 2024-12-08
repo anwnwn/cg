@@ -77,6 +77,59 @@ def main():
             print(f"Read: {read}, Found: {found}, Time: {query_time:.10f} seconds")
 
     tracemalloc.stop()
+    strings = []
+    lengths = [31, 63, 127, 255, 511]
+    with open("Data/DMPK/dmpk_NM_001424164.fasta", "r") as file:
+        header = file.readline()
+        sequence = "".join(line.strip() for line in file)
+
+    for i in lengths:
+        if i <= len(sequence):  # Ensure the length is valid
+            substring = sequence[:i]
+            strings.append(substring)
+        else:
+            print(f"{i} exceeds the sequence length of {len(sequence)}")
+
+    # print(strings)
+
+
+    substrings = strings
+
+
+
+    # # Read substrings from input file
+    # with open(input_file, 'r') as file:
+    #     substrings = [line.strip() for line in file.readlines()]
+
+    # Search substrings, write results to output file
+    results = []
+    with open(output_file, 'w') as out_fh:
+        out_fh.write(f"Kmer index built in {end_time - start_time:.6f} seconds\n")
+        out_fh.write(f"Memory used: {end_mem[0] - start_mem[0]} bytes, Peak memory: {end_mem[1]} bytes\n")
+        for substring in substrings:
+            start_time = time.time()
+            found = find(tree, substring)
+            end_time = time.time()
+            out_fh.write(f"Substring: {substring}, Found: {found}, Time: {end_time - start_time:.10f} seconds\n")
+            print(f"Substring: {substring}, Found: {found}, Time: {end_time - start_time:.10f} seconds\n")
+            results.append((substring, found, end_time - start_time))
+            print( end_time - start_time)
+
+    
+    lengths = [len(substring) for substring, _, _ in results]
+    times = [time for _, _, time in results]
+    plt.figure(figsize=(10, 6))
+    plt.plot(lengths, times, marker='o', linestyle='-', label='in 1e-5 seconds')
+    plt.xlabel('length of substring')
+    plt.ylabel('query time')
+    plt.grid(True)
+    plt.legend()
+    plt.show()
+    print(results)
+
+
+
+
 
 if __name__ == "__main__":
     main()
