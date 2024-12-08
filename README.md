@@ -53,7 +53,7 @@ Line 3+ - Length of read: query time(seconds)
 ```
 
 #### Wheeler graph
-- DMPK, write results to kmer_output.txt:
+- DMPK, write results to wheeler_output.txt:
 ```
 python3 -m Wheeler_Graph.wheeler Data/DMPK Benchmarking_Files/output.txt wheeler_output.txt
 ```
