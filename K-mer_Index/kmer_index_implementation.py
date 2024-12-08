@@ -42,13 +42,13 @@ def time_check_read(kmer_index, read, k_value):
 
 def main():
     if len(sys.argv) != 4:
-        print("Usage: python3 kmer_index_implementation.py <fasta_folder_path> <kmer_input_testing_file> <output_file>")
         sys.exit(1)
 
     folder_path = sys.argv[1]
     kmer_file = sys.argv[2]
     output_file = sys.argv[3]
-    output_file = os.path.join(os.getcwd(), os.path.basename(output_file)) #ensuring that it is in the directory of kmer index
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    output_file = os.path.join(script_dir, os.path.basename(output_file))
     # k-mer size
     k_value = 31
 
