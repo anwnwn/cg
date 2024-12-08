@@ -48,7 +48,7 @@ def main():
     folder_path = sys.argv[1]
     kmer_file = sys.argv[2]
     output_file = sys.argv[3]
-
+    output_file = os.path.join(os.getcwd(), os.path.basename(output_file)) #ensuring that it is in the directory of kmer index
     # k-mer size
     k_value = 31
 
@@ -74,7 +74,6 @@ def main():
         for read in reads:
             found, query_time = time_check_read(kmer_index, read, k_value)
             out_fh.write(f"Read: {read}, Found: {found}, Time: {query_time:.10f} seconds\n")
-            print(f"Read: {read}, Found: {found}, Time: {query_time:.10f} seconds")
 
     tracemalloc.stop()
 
