@@ -1,18 +1,10 @@
 import os
 import sys
-import random
 
-def extract_random_substrings(input_file, output_file):
-    """
-    Extracts random substrings of specified lengths from a nucleotide sequence
-    in a FASTA file and writes them to an output file.
+def extract_and_modify_substrings(input_file, output_file):
 
-    Args:
-        input_file (str): Path to the input FASTA file.
-        output_file (str): Path to the output file.
-    """
-    substring_lengths = [31, 63, 127, 255, 511]
-
+    # Can change the substring lengths you want to see as data
+    substring_lengths = [31, 63, 127, 255, 511, 1024,2047, 4095, 8191, 10000]
     # Read the FASTA file
     try:
         with open(input_file, 'r') as file:
@@ -21,23 +13,26 @@ def extract_random_substrings(input_file, output_file):
         print(f"Error: The file '{input_file}' does not exist.")
         sys.exit(1)
 
-    # Concatenate the sequence lines into one string, ignoring the header
+    # Concatenate the sequence lines into one string ignoring the first line
     sequence = ''.join(line.strip() for line in content if not line.startswith('>'))
-    print(sequence)
 
-    # Extract random substrings of specified lengths
-    random_substrings = []
+    # Ensure the sequence is long enough for the required substrings
+    if len(sequence) < max(substring_lengths):
+        print(f"Error: The sequence length ({len(sequence)}) is shorter than the longest requested substring length ({max(substring_lengths)}).")
+        sys.exit(1)
+
+    # Extract substrings and their modified versions
+    substrings = []
     for length in substring_lengths:
         if len(sequence) >= length:
-            start_index = 0
-            random_substrings.append(sequence[start_index:start_index + length])
-        else:
-            print(f"Warning: Sequence is too short to extract a substring of length {length}.")
+            original_substring = sequence[:length]
+            substrings.append(original_substring)
+       
 
-    # Write the random substrings to the output file
+    # Write the substrings to the output file
     try:
         with open(output_file, 'w') as file:
-            for substring in random_substrings:
+            for substring in substrings:
                 file.write(substring + '\n')
     except Exception as e:
         print(f"Error writing to output file: {e}")
@@ -45,33 +40,22 @@ def extract_random_substrings(input_file, output_file):
 
 def main():
     if len(sys.argv) != 3:
-        print("Usage: python extract_random_substrings.py <fasta_file_path> <output_file>")
+        print("Usage: python extract_and_modify_substrings.py <fasta_file_path> <output_file>")
         sys.exit(1)
 
     input_file = sys.argv[1]
     output_file = sys.argv[2]
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    output_file = os.path.join(script_dir, os.path.basename(output_file))
 
-    # Ensure the output file is created in the 'Benchmarking_Files' directory
-    output_file = os.path.join(os.getcwd(), "Benchmarking_Files", os.path.basename(output_file))
-
-    # Check if the input file exists
-    if not os.path.exists(input_file):
-        print(f"Error: The file '{input_file}' does not exist.")
-        sys.exit(1)
-
-    # Ensure the output directory exists or create it
-    output_dir = os.path.dirname(output_file)
-    if not os.path.exists(output_dir):
-        os.makedirs(output_dir)
-
-    # Call the function to extract random substrings
+    # Call the function to extract and modify substrings
     try:
-        extract_random_substrings(input_file, output_file)
+        extract_and_modify_substrings(input_file, output_file)
     except Exception as e:
         print(f"An error occurred: {e}")
         sys.exit(1)
 
-    print(f"Random substrings have been successfully written to '{output_file}'.")
+    print(f"Substrings have been successfully written to '{output_file}'.")
 
 if __name__ == "__main__":
     main()

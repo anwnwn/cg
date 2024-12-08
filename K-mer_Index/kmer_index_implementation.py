@@ -68,12 +68,13 @@ def main():
     reads = read_sequences_from_file(kmer_file)
 
     with open(output_file, 'w') as out_fh:
-        out_fh.write(f"Time taken to build kmer index: {build_time:.10f} seconds\n")
-        out_fh.write(f"Memory usage for building kmer index: {end_mem[0] - start_mem[0]} bytes (current), {end_mem[1]} bytes (peak)\n")
+            out_fh.write(f"{build_time:.10f}\n")
+            out_fh.write(f"{end_mem[1]}\n")
 
-        for read in reads:
-            found, query_time = time_check_read(kmer_index, read, k_value)
-            out_fh.write(f"Read: {read}, Found: {found}, Time: {query_time:.10f} seconds\n")
+            for read in reads:
+                _, query_time = time_check_read(kmer_index, read, k_value)
+                out_fh.write(f"{len(read)}: {query_time:.10f}\n")
+
 
     tracemalloc.stop()
 
