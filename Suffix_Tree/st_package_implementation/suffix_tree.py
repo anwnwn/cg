@@ -42,8 +42,8 @@ def main():
 
     # Write stats to the output file
     with open(output_file, 'w') as file:
-        file.write(f"Suffix tree built in {end_time - start_time:.6f} seconds.\n")
-        file.write(f"Memory usage: {current / 1024:.2f} KB; Peak: {peak / 1024:.2f} KB.\n")
+        file.write(f"{end_time - start_time:.6f}\n")
+        file.write(f"{peak}\n")
 
     # Read substrings from the input file
     substrings = read_substrings_from_file(input_file)
@@ -60,8 +60,12 @@ def main():
 
     # Write substring search results to the output file
     with open(output_file, 'a') as file:  
-        for substring, found, search_time in results:
-            file.write(f"Substring: {substring}, Found: {found}, Time: {search_time:.10f} seconds\n")
+        for substring in substrings:
+            start_time = time.time()
+            index = tree.find(substring) 
+            end_time = time.time()
+            search_time = end_time - start_time
+            file.write(f"{len(substring)}: {search_time:.10f}\n")
 
 if __name__ == "__main__":
     main()
