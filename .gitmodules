@@ -1,0 +1,3 @@
+[submodule "Wheeler_Graph/Wheeler_Graph_Toolkit"]
+	path = Wheeler_Graph/Wheeler_Graph_Toolkit
+	url = https://github.com/Kuanhao-Chao/Wheeler_Graph_Toolkit.git
