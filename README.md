@@ -90,11 +90,8 @@ python3 Benchmarking_Graphs/generate_graphs.py
 ```
 
 ## Acknowledgements & individual contributions
-- Nikhil:
-- Annie:
-- Avery:
-- Andrea:
-- Ben Langmead: the goat
+Andrea referenced various sources to modify the implementation of the De Bruijn graph, used the Wheeler Graph Toolkit Package to convert the De Bruijn Graph into Wheeler graph structure, coded a pattern matching algorithm based on the Wheeler Graph Structure, then wrote various scripts to allow all parts of the implementation to be run seamlessly from one command line script. Avery built the k-mer index structure to represent pangenomes, investigated ways to detect variation, and created a variation detection algorithm for the structure based on past literature review. She developed benchmarking standards for all structures. Using these standards, she created scripts to generate benchmarking data and results from all three structures so they can all be run consistently with the same command line. Annie built the custom suffix tree structure to represent pangenomes and constructed the proprietary variation detection algorithm optimized for longer queries with variation nodes defined based on consensus definition. She also wrote substring processing scripts to determine and consolidate the data used for the benchmarking setup and iteratively processed the benchmarking results. Nikhil conducted prior literature review, investigated prior implementations and other methods to represent pangenomes, and assembled deliverables (i.e., writeup, references, slides). He also created the final visualizations and figures in the paper. We all assisted each other when we ran into bugs and discussed potential issues/solutions and the writeup. 
+
 
 ---
 2024 Andrea Cheng, Nikhil Choudhary, Avery Kuo, Annie Wang supervised by Dr. Ben Langmead
