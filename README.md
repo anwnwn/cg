@@ -10,7 +10,7 @@ Reference bias, the tendency for genetic analyses to favor sequences similar to 
 
 
 ## How to run
-Each indexing representation (K-mer_Index, SuffixTree, DeBruijn_Graph) can be accessed through its respective folder. The Wheeler graph representation is generated through the Debruijn implementation and then fed through the Wheelie algorithm. All scripts can be run starting from the /cg directory.
+Each indexing representation (K-mer_Index, Suffix_Tree, Wheeler_Graph) can be accessed through its respective folder. All scripts can be run starting from the /cg directory.
 
 #### K-mer index
 - DMPK, write results to kmer_output.txt:
@@ -41,14 +41,37 @@ To run the suffix tree package implementation
 ```
 python3 -m Suffix_Tree.st_package_implementation.suffix_tree Data/DMPK Benchmarking_Files/output.txt st_output.txt
 ```
-- generalized
+Generalized
 ```
 python3 -m <script file>
 ```
 The format of the output file will be: 
-```Line 1 - Time taken to build the suffix tree(seconds)
+```
+Line 1 - Time taken to build the suffix tree(seconds)
 Line 2 - Peak memory usage (in bytes)
 Line 3+ - Length of read: query time(seconds)
+```
+
+#### Wheeler graph
+
+The Wheeler graph representation is generated through the Debruijn implementation and then fed through the Wheelie algorithm.
+
+To generate DeBruijn graph
+```
+python3 -m Wheeler_Graph.debruijn Visualize DeBruijn Graph PNG (if Graphviz is downloaded): dot -Tpng [name of .dot file here] > [name of outputfile].png
+```
+
+To create Wheeler Graph
+- Navigate to Wheelie Package Repository (Wheeler_Graph_Toolkit)
+- Move .dot file to ./bin (or adjust the command below)
+  ```
+  % ./bin/recognizer ./bin/[name of .dot file here] -w
+  ```
+- Move the folder produced “out__[name of .dotfile]” to location of searchwheeler.py
+
+To query Wheeler Graph
+```
+python3 searchwheeler.py Change foldername to “out__[name of .dotfile]” Change P
 ```
 
 #### Reproducibility
