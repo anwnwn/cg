@@ -10,7 +10,7 @@ Reference bias, the tendency for genetic analyses to favor sequences similar to 
 
 
 ## How to run
-Each indexing representation (K-mer_Index, SuffixTree, DeBruijn_Graph) can be accessed through its respective folder. The Wheeler graph representation is generated through the Debruijn implementation and then fed through the Wheelie algorithm.
+Each indexing representation (K-mer_Index, SuffixTree, DeBruijn_Graph) can be accessed through its respective folder. The Wheeler graph representation is generated through the Debruijn implementation and then fed through the Wheelie algorithm. All scripts can be run starting from the /cg directory.
 
 #### K-mer index
 - DMPK, write results to kmer_output.txt:
@@ -21,13 +21,40 @@ python3 -m K-mer_Index.kmer_index_implementation Data/DMPK Benchmarking_Files/ou
 ```
 python3 -m <script file>
 ```
-The format of the output file will be: Line 1 - Time taken to build the k-mer index(seconds) Line 2 - Peak memory usage (in bytes) Line 3+ - Length of read: query time(seconds)
+The format of the output file will be:
+```
+Line 1 - Time taken to build the k-mer index(seconds)
 
+Line 2 - Peak memory usage (in bytes)
+
+Line 3+ - Length of read: query time(seconds)
+```
+
+#### Suffix tree
+To run the proprietary implementation
+- DMPK, write results to st_output.txt
+```
+python3 -m Suffix_Tree.st_implementation.suffix_tree Data/DMPK Benchmarking_Files/output.txt st_output.txt
+```
+To run the suffix tree package implementation
+- DMPK, write results to st_output.txt
+```
+python3 -m Suffix_Tree.st_package_implementation.suffix_tree Data/DMPK Benchmarking_Files/output.txt st_output.txt
+```
+- generalized
+```
+python3 -m <script file>
+```
+The format of the output file will be: 
+```Line 1 - Time taken to build the suffix tree(seconds)
+Line 2 - Peak memory usage (in bytes)
+Line 3+ - Length of read: query time(seconds)
+```
 
 #### Reproducibility
 To generate benchmarking data
 
-- DMPK, write results to "output.txt"
+- DMPK, write results to output.txt
   ```
   python3 generate_test_data.py ../Data/DMPK/dmpk_NC_000019.fasta output.txt
   ```
