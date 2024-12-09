@@ -205,34 +205,8 @@ def search_wheeler(foldername, P):
 
 if __name__ == "__main__":
     foldername = "out__graphDMPKfinal"
-    import os
-
-    # Path to the folder containing the text files
-    folder_path = 'output_substrings'
-
-    # Iterate over each file in the folder
-    for filename in os.listdir(folder_path):
-        # Check if the file is a text file
-        if filename.endswith('.txt'):
-            file_path = os.path.join(folder_path, filename)
-            
-            # Open and read the file
-            with open(file_path, 'r') as file:
-                # Read the file content and split by newline characters
-                lines = file.read().splitlines()
-                
-                # Process each line
-                for i,line in enumerate(lines):
-                    found = search_wheeler(foldername, line) # Or any other processing logic you need
-                    if found: 
-                        print(f"Found string '{line}' in line {i} of {file_path} ")
-        print(f"checked all {filename}")
+   
     # P = "GCTCCCTCTCCTAGGACCCTCCCCCCAAAAG" # Should return True
-    # P = "CCTAGGACCCCCACCCCCGACCCTCGCGAAA" # Should return False
-    # P = "CAGACATGCAGCCAGGGCTCCAGGGCCTGGACAGGGG"
-#     P = """CACACGTGCAAGCGCCCAGCCTGGAGCCCTCGGTGTCCCCACAGGATGAAAC
-# AGCTGAAGTGGCAGTTCCAGCGGCTGTCCCTGCGGCAGAGGCTGAGGCCGAGGTGACGCTGCGGGAGCTC
-# CAGGAAGCCCTGGAGGAGGAGGTGCTCACCCGGCAGAGCCTGAGCCGGGAGATGGAGGCCATCCGCACGG
-# ACAACCAGAACTTCGCCAGTCAACTACGCGAGGCAGAGGCTCGGAACCGGGACCTAGAGGCACACGTCCG
-# GCAGTTGCAGGAGCGGATGGAGTTGCTGCAGGCAGAG"""
-#     print(search_wheeler(foldername, P))
+    P = "CCTAGGACCCCCACCCCCGACCCTCGCGAAA" # Should return False
+
+    print(search_wheeler(foldername, P))
