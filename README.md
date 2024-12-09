@@ -53,8 +53,9 @@ Line 3+ - Length of read: query time(seconds)
 ```
 
 #### Wheeler graph
-To run the wheeler graph benchmarking, graphviz must first be installed. 
-The link with instructions to do so is: https://graphviz.readthedocs.io/en/latest/manual.html
+To run the wheeler graph benchmarking, graphviz must first be installed. The link with instructions to do so is: https://graphviz.readthedocs.io/en/latest/manual.html
+
+It may also be necessary to clone the Wheeler_Graph_Toolkit Repository to your local machine. 
 
 - DMPK, write results to wheeler_output.txt:
 ```
