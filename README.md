@@ -36,7 +36,7 @@ To run the proprietary implementation
 ```
 python3 -m Suffix_Tree.st_implementation.suffix_tree Data/DMPK Benchmarking_Files/output.txt st_output.txt
 ```
-To run the suffix tree package implementation
+To run the suffix tree package implementation, first the suffix_trees package must be installed.
 - DMPK, write results to st_output.txt
 ```
 python3 -m Suffix_Tree.st_package_implementation.suffix_tree Data/DMPK Benchmarking_Files/output.txt st_output.txt
@@ -53,6 +53,9 @@ Line 3+ - Length of read: query time(seconds)
 ```
 
 #### Wheeler graph
+To run the wheeler graph benchmarking, graphviz must first be installed. 
+The link with instructions to do so is: https://graphviz.readthedocs.io/en/latest/manual.html
+
 - DMPK, write results to wheeler_output.txt:
 ```
 python3 -m Wheeler_Graph.wheeler Data/DMPK Benchmarking_Files/output.txt wheeler_output.txt
